@@ -1,0 +1,40 @@
+
+@media only screen and (max-width: 600px) {
+
+	p{font:bold 15px/20px sans-serif;margin:  0% 0% 0% 0%;padding: 0% 0% 0% 0%}
+	#parrafoInicio { font: bold 15px/20px sans-serif;padding:10% 10% 10% 10%}
+	body{background-color:#ececec;font: bold 1 sans-serif}
+  .decor {
+    padding: 3px;
+  }
+  .textoOperaciones{
+  display: none;
+}
+  .wrap {
+    width: 100%;
+    margin-top: 0px;
+  }
+  
+.divLoginContenido{  margin: 5%;}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
