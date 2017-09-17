@@ -12,6 +12,7 @@
 */
 
 Route::get('/misPolizas', 'polizasController@mostrarListado');//->middleware('cliente');
+Route::get('/misSiniestros', 'siniestrosController@mostrarListado');//->middleware('cliente');
 Route::get('/', 'Auth\AuthController@getLogin');
 Route::post('/', 'loginController@authenticate');
 Route::get('/login', 'Auth\AuthController@getLogin');
