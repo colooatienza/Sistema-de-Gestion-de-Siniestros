@@ -26,8 +26,9 @@
         <thead>
         <tr class="encabezadoTabla">
             <th>Numero</th>
-            <th>Poliza</th>
             <th>Fecha</th>
+            <th>Poliza</th>
+            <th>Descripción</th>
             <th>Estado</th>
         </tr>
         </thead>
@@ -37,8 +38,9 @@
   @foreach($siniestros as $item) 
     <tr class="filaTabla">
       <td>  {{ $item->id }} </td>
-      <td class="separados"> {{ $item->poliza}}</td>
       <td class="separados"> {{ date('d/m/Y', strtotime($item->fecha))}} </td>
+      <td class="separados"> {{ $item->poliza}}</td>
+      <td class="separados"> {{ $item->descripcion}}</td>
       <td class="separados"> {{ $item->estado}}</td>
     </tr>
     

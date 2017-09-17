@@ -13,10 +13,20 @@
 
 Route::get('/misPolizas', 'polizasController@mostrarListado');//->middleware('cliente');
 Route::get('/misSiniestros', 'siniestrosController@mostrarListado');//->middleware('cliente');
+Route::get('/registrarSiniestro/{id}', 'siniestrosController@registrarSiniestro');//->middleware('cliente');
 Route::get('/', 'Auth\AuthController@getLogin');
 Route::post('/', 'loginController@authenticate');
 Route::get('/login', 'Auth\AuthController@getLogin');
 Route::post('/login', 'loginController@authenticate');
+
+  Route::post('siniestrosController/registrar', ['uses' => 'siniestrosController@registrar', 'as' => 'create_movie']);
+
+
+
+
+
+
+
 Route::get('/logout', 'loginController@postLogout');
 Route::get('/inhabilitarUsuario/{idUsuario}', 'inhabilitarUsuario@inhabilitar');
 Route::get('/habilitarUsuario/{idUsuario}', 'habilitarUsuario@habilitar')->middleware('adminGestion');

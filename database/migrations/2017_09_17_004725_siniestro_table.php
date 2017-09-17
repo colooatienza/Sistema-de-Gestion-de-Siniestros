@@ -15,6 +15,7 @@ class SiniestroTable extends Migration
             Schema::create('auto', function (Blueprint $table) {
             $table->increments('id');
             $table->string('estado');
+            $table->string('descripcion');
             $table->dateTime('fecha');
             $table->foreign('poliza')->references('id')->on('poliza');
             $table->timestamps();

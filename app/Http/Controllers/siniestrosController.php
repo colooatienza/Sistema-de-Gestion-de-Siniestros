@@ -9,7 +9,14 @@ use App\Siniestro;
 class siniestrosController extends Controller 
 {
      public function mostrarListado(){
-
         return view('siniestros', ["siniestros" => Siniestro::siniestros()]);
+    }
+
+    public function registrarSiniestro($idPoliza){
+        return view('registrarSiniestro', ["poliza" => $idPoliza]);
+    }
+
+    public function registrar(Request $request){
+        Siniestro::registrar($request);
     }
 }
