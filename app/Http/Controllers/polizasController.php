@@ -4,19 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Configuracion;
-use App\Producto;
+use App\Poliza;
 
-class faltantesController extends Controller 
+class polizasController extends Controller 
 {
-     public function mostrar(){
-    	$polizas =  Poliza::listado();
-        $rol = 'Administracion';
-        $log = true;
+     public function mostrarListado(){
 
-        return view('polizas', [
-        	"rol" => $rol, 
-        	"logueado" => $log, 
-        	"polizas" => $polizas]);
+        return view('polizas', ["polizas" => Poliza::polizas()]);
     }
 }

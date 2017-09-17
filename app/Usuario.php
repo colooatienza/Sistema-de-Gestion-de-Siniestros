@@ -10,9 +10,7 @@ class Usuario extends Authenticatable
     use SoftDeletes;
     protected $table = 'usuario';
 
-    protected $fillable = [
-        'usuario', 'password', 'nombre', 'apellido', 'dni', 'email', 'telefono', 'rol_id', 'ubicacion_id', 'habilitado',
-    ];
+    protected $fillable = ['usuario', 'password', 'nombre', 'apellido', 'dni', 'email', 'telefono', 'rol_id', 'habilitado'];
 
     public $timestamps = false;
      protected $hidden = [
@@ -24,14 +22,10 @@ class Usuario extends Authenticatable
         return $this->belongsTo('App\Rol');
     }
 
-     public function ubicacion(){
-        return $this->belongsTo('App\Ubicacion');
+    public function polizas(){
+        return $this->hasMany('App\Poliza');
     }
-
-     public function pedidos(){
-        return $this->hasMany('App\Pedidos');
-    }
-    
+    /*
      static public function usuarios($porPagina){
          return Usuario::orderBy('usuario')->paginate($porPagina['valor']);
      }
@@ -100,6 +94,7 @@ class Usuario extends Authenticatable
         $usuario->ubicacion_id = $request->input('ubicacion');
         $usuario->save();
     }
+    */
 }
 
 

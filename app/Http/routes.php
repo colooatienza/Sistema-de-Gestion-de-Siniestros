@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/listadoPolizas', 'polizasController@mostrarListado')->middleware('cliente');
+Route::get('/misPolizas', 'polizasController@mostrarListado');//->middleware('cliente');
 Route::get('/', 'Auth\AuthController@getLogin');
 Route::post('/', 'loginController@authenticate');
 Route::get('/login', 'Auth\AuthController@getLogin');
