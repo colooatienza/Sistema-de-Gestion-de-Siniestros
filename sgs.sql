@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2017 at 06:15 PM
+-- Generation Time: Sep 18, 2017 at 01:06 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -33,10 +33,18 @@ CREATE TABLE IF NOT EXISTS `auto` (
   `sumaasegurada` float NOT NULL,
   `gnc` tinyint(1) NOT NULL,
   `poliza` int(11) NOT NULL,
+  `alarma` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `modelo` (`modelo`),
   KEY `poliza` (`poliza`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `auto`
+--
+
+INSERT INTO `auto` (`id`, `modelo`, `anio`, `sumaasegurada`, `gnc`, `poliza`, `alarma`) VALUES
+(1, 19, 2013, 100000, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -23070,6 +23078,20 @@ INSERT INTO `cobertura` (`id`, `descripcion`, `ramo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fotosiniestro`
+--
+
+CREATE TABLE IF NOT EXISTS `fotosiniestro` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(60) NOT NULL,
+  `siniestro` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `siniestro` (`siniestro`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `itemvivienda`
 --
 
@@ -23080,9 +23102,17 @@ CREATE TABLE IF NOT EXISTS `itemvivienda` (
   `nroserie` varchar(50) NOT NULL,
   `sumaasegurada` float NOT NULL,
   `vivienda` int(11) NOT NULL,
+  `objeto` varchar(80) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `vivienda` (`vivienda`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `itemvivienda`
+--
+
+INSERT INTO `itemvivienda` (`id`, `marca`, `modelo`, `nroserie`, `sumaasegurada`, `vivienda`, `objeto`) VALUES
+(1, 'lg', '420', '123012842034', 5000, 1, 'televisor');
 
 -- --------------------------------------------------------
 
@@ -23091,16 +23121,16 @@ CREATE TABLE IF NOT EXISTS `itemvivienda` (
 --
 
 CREATE TABLE IF NOT EXISTS `marca` (
-  `MarcID` smallint(6) NOT NULL,
-  `MarcDesc` char(100) DEFAULT NULL,
-  PRIMARY KEY (`MarcID`)
+  `id` smallint(6) NOT NULL,
+  `descripcion` char(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `marca`
 --
 
-INSERT INTO `marca` (`MarcID`, `MarcDesc`) VALUES
+INSERT INTO `marca` (`id`, `descripcion`) VALUES
 (1, ' MARCA'),
 (2, 'AGRALE'),
 (3, 'ALFA ROMEO'),
@@ -23158,18 +23188,18 @@ INSERT INTO `marca` (`MarcID`, `MarcDesc`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `modelo` (
-  `ModelId` int(11) NOT NULL,
-  `ModelDesc` char(100) NOT NULL,
-  `MarcID` smallint(6) NOT NULL,
-  PRIMARY KEY (`ModelId`),
-  KEY `IMODELO1` (`MarcID`)
+  `id` int(11) NOT NULL,
+  `descripcion` char(100) NOT NULL,
+  `MarcaID` smallint(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IMODELO1` (`MarcaID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `modelo`
 --
 
-INSERT INTO `modelo` (`ModelId`, `ModelDesc`, `MarcID`) VALUES
+INSERT INTO `modelo` (`id`, `descripcion`, `MarcaID`) VALUES
 (1, ' MODELO', 1),
 (2, 'MARRUA', 2),
 (3, '147', 3),
@@ -23686,9 +23716,19 @@ CREATE TABLE IF NOT EXISTS `siniestro` (
   `poliza` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `estado` varchar(30) NOT NULL,
+  `descripcion` varchar(400) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `poliza` (`poliza`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `siniestro`
+--
+
+INSERT INTO `siniestro` (`id`, `poliza`, `fecha`, `estado`, `descripcion`) VALUES
+(1, 1, '2017-09-17', 'Terminado con pago', 'Me chocaron el paragolpe trasero.'),
+(2, 2, '2017-09-16', 'En tramite', 'Se me prendio fuego el rancho'),
+(3, 1, '2017-09-14', 'En tramite', ' lalala');
 
 -- --------------------------------------------------------
 
@@ -23727,21 +23767,20 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email` varchar(255) NOT NULL,
   `telefono` varchar(45) DEFAULT NULL,
   `rol_id` int(11) DEFAULT NULL,
-  `ubicacion_id` int(11) DEFAULT NULL,
   `habilitado` tinyint(4) NOT NULL DEFAULT '1',
   `updated_at` datetime NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `deleted_at` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `rol_id` (`rol_id`,`ubicacion_id`)
+  KEY `rol_id` (`rol_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `usuario`, `password`, `nombre`, `apellido`, `dni`, `email`, `telefono`, `rol_id`, `ubicacion_id`, `habilitado`, `updated_at`, `remember_token`, `deleted_at`) VALUES
-(1, 'carlos', '$2a$04$/gXKwWrZZXnzBCHzzsQrEuIC31/n69D4dplU4jwMK.Sk4dxsaYfBa', 'Carlos', 'Perez', '10234123', 'carlosperez@gmail.com', '221 420420', 1, NULL, 1, '0000-00-00 00:00:00', NULL, NULL);
+INSERT INTO `usuario` (`id`, `usuario`, `password`, `nombre`, `apellido`, `dni`, `email`, `telefono`, `rol_id`, `habilitado`, `updated_at`, `remember_token`, `deleted_at`) VALUES
+(1, 'carlos', '$2a$04$/gXKwWrZZXnzBCHzzsQrEuIC31/n69D4dplU4jwMK.Sk4dxsaYfBa', 'Carlos', 'Perez', '10234123', 'carlosperez@gmail.com', '221 420420', 1, 1, '0000-00-00 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -23756,6 +23795,7 @@ CREATE TABLE IF NOT EXISTS `vivienda` (
   `tipo` int(11) NOT NULL,
   `alarma` tinyint(1) NOT NULL,
   `poliza` int(11) NOT NULL,
+  `sumaasegurada` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ciudad` (`ciudad`,`tipo`),
   KEY `tipo` (`tipo`),
@@ -23766,8 +23806,8 @@ CREATE TABLE IF NOT EXISTS `vivienda` (
 -- Dumping data for table `vivienda`
 --
 
-INSERT INTO `vivienda` (`id`, `metros`, `ciudad`, `tipo`, `alarma`, `poliza`) VALUES
-(1, 60, 1114, 1, 1, 2);
+INSERT INTO `vivienda` (`id`, `metros`, `ciudad`, `tipo`, `alarma`, `poliza`, `sumaasegurada`) VALUES
+(1, 60, 1114, 1, 1, 2, 500000);
 
 --
 -- Constraints for dumped tables
@@ -23777,8 +23817,8 @@ INSERT INTO `vivienda` (`id`, `metros`, `ciudad`, `tipo`, `alarma`, `poliza`) VA
 -- Constraints for table `auto`
 --
 ALTER TABLE `auto`
-  ADD CONSTRAINT `auto_ibfk_2` FOREIGN KEY (`poliza`) REFERENCES `poliza` (`id`),
-  ADD CONSTRAINT `auto_ibfk_1` FOREIGN KEY (`modelo`) REFERENCES `modelo` (`ModelId`);
+  ADD CONSTRAINT `auto_ibfk_1` FOREIGN KEY (`modelo`) REFERENCES `modelo` (`id`),
+  ADD CONSTRAINT `auto_ibfk_2` FOREIGN KEY (`poliza`) REFERENCES `poliza` (`id`);
 
 --
 -- Constraints for table `ciudad`
@@ -23793,6 +23833,12 @@ ALTER TABLE `cobertura`
   ADD CONSTRAINT `cobertura_ibfk_1` FOREIGN KEY (`ramo`) REFERENCES `ramo` (`id`);
 
 --
+-- Constraints for table `fotosiniestro`
+--
+ALTER TABLE `fotosiniestro`
+  ADD CONSTRAINT `fotosiniestro_ibfk_1` FOREIGN KEY (`siniestro`) REFERENCES `siniestro` (`id`);
+
+--
 -- Constraints for table `itemvivienda`
 --
 ALTER TABLE `itemvivienda`
@@ -23802,7 +23848,7 @@ ALTER TABLE `itemvivienda`
 -- Constraints for table `modelo`
 --
 ALTER TABLE `modelo`
-  ADD CONSTRAINT `IMODELO1` FOREIGN KEY (`MarcID`) REFERENCES `marca` (`MarcID`);
+  ADD CONSTRAINT `IMODELO1` FOREIGN KEY (`MarcaID`) REFERENCES `marca` (`id`);
 
 --
 -- Constraints for table `poliza`
@@ -23827,9 +23873,9 @@ ALTER TABLE `usuario`
 -- Constraints for table `vivienda`
 --
 ALTER TABLE `vivienda`
-  ADD CONSTRAINT `vivienda_ibfk_3` FOREIGN KEY (`poliza`) REFERENCES `poliza` (`id`),
   ADD CONSTRAINT `vivienda_ibfk_1` FOREIGN KEY (`tipo`) REFERENCES `tipovivienda` (`id`),
-  ADD CONSTRAINT `vivienda_ibfk_2` FOREIGN KEY (`ciudad`) REFERENCES `ciudad` (`id`);
+  ADD CONSTRAINT `vivienda_ibfk_2` FOREIGN KEY (`ciudad`) REFERENCES `ciudad` (`id`),
+  ADD CONSTRAINT `vivienda_ibfk_3` FOREIGN KEY (`poliza`) REFERENCES `poliza` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
