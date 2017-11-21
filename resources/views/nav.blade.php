@@ -15,30 +15,20 @@
 
   <ul id="top-menu">
     <li>
-      <a href="{{asset('/')}}">INICIO</a>
+      <a href="{{asset('/misPolizas')}}">Mis Pólizas</a>
+      
+    </li>
+     <li>
+      <a href="{{asset('/misSiniestros')}}">Seguimiento de siniestros</a>
       
     </li>
     <li>
-      <a href="{{asset('quienesSomos')}}">¿QUIENES SOMOS?</a>
+      <a href="#">¿QUIENES SOMOS?</a>
       
       
     </li>
-    <li>
-      <a href="#">NUESTRAS PROMOCIONES</a>
-      <ul>
-        <li><a href="">DESAYUNO COMPLETO</a></li>
-        <li><a href="">ALMUERZO COMPLETO</a></li>
-        <li><a href="">MERIENDA COMPLETA</a></li>
-      </ul>  
-    </li>
-    <li>
-      <a href="">Links Útiles</a>
-      
-    </li>
-    <li><a href="{{asset('registrarse')}}">Registrarse</a></li>
-    <li> <a href="{{asset('login')}}">Login</a></li>
+    <li> <a href="{{asset('logout')}}">Logout</a></li>
     
-   
   </ul>
   
 </nav>

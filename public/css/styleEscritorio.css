@@ -196,7 +196,16 @@ li.boton:target{display:block;}
   }
 
 .imputForm{width: 90%}
+
+.cantidad{width: 50px}
+
+.descripcion{width: 350px}
+
+.btnAgregar{
+  width:50px;
+}
 .agregarpro{ padding:5% 0% 0% 0%; }
+
 .formularioAgregar{
   margin: 5% 5% 5% 5% ;
   width: 70%;
@@ -208,6 +217,9 @@ li.boton:target{display:block;}
 }
 .divForm{margin: 0% 0% 0% 30%; float: left;}
 
+.divRegistrarSiniestro{margin: 0 auto; 
+  width: 60%;
+  float: center;}
 
 #navegador { display: block
   
