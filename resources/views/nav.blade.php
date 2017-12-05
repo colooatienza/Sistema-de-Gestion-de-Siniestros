@@ -3,15 +3,7 @@
     <script type="text/javascript" src="{{asset('jq/jqStyle.js')}}"></script>
   <link type="text/css" rel="stylesheet" href="{{asset('css/prmenu.css')}}" />
   
-  
 <nav>
-
-
-
-
-
-  
-
 
   <ul id="top-menu">
     <li>
@@ -25,9 +17,13 @@
     <li>
       <a href="#">¿QUIENES SOMOS?</a>
       
-      
     </li>
+    @if(Auth::guest())
+    <li> <a href="{{asset('login')}}">Login</a></li>
+
+    @else
     <li> <a href="{{asset('logout')}}">Logout</a></li>
+    @endif
     
   </ul>
   

@@ -11,6 +11,9 @@ use App\Http\Requests\loginRequest;
 class loginController extends Controller
 {
    
+  public function loguear(){
+        return view('loginUsuarioVista');
+    }
 
     public function authenticate(loginRequest $request){
      
@@ -20,7 +23,7 @@ class loginController extends Controller
         );
 
         if(Auth::attempt($user)){
-             return redirect()->intended('/'); 
+             return redirect()->intended('/misPolizas'); 
          }else{       
              return redirect()->intended('/login')->with('msj', 'Los datos ingresados no son validos, intente nuevamente...');
          }

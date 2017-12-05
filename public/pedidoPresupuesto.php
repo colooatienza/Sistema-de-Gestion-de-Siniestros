@@ -7,16 +7,10 @@ require '../vendor/autoload.php';
 
 $app = new \Slim\App;
 
-$app->get('/presupuesto', function (Request $request, Response $response) {
-/*
-	$datos = $request->getParsedBody();
-	$presupuesto = [];
-	$presupuesto['nombre'] = $request->getParam('nombre');
-	$presupuesto['descripcion'] = $request->getParam('descripcion');
-	$presupuesto['cantidad'] = $request->getParam('cantidad');
-	$presupuesto['precio'] = rand(100, 100000) * $presupuesto['cantidad'];
-*/
-	//$response = json_encode(array('presupuesto' => rand(100, 100000)));
-    return json_encode(array('presupuesto' => rand(100, 100000)));
+$app->post('/presupuesto', function (Request $request, Response $response) {
+
+	$precio = (string)(rand(100, 5000));
+	$presupuesto = array('precio' => $precio);
+    return $response->withJson($presupuesto, 200);
 });
 $app->run();

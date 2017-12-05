@@ -18,7 +18,7 @@
 <div class="page-wrap">
 
 @include('header')
-@include('navGeneral')
+@include('nav')
 
 <div class="divLoginContenido"> 
 <p>

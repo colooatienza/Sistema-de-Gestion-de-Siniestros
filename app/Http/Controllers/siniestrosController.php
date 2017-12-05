@@ -18,5 +18,6 @@ class siniestrosController extends Controller
 
     public function registrar(Request $request){
         Siniestro::registrar($request);
+        return redirect('misSiniestros');
     }
 }

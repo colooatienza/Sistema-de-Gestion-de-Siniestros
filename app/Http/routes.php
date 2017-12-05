@@ -14,8 +14,10 @@
 Route::get('/misPolizas', 'polizasController@mostrarListado');//->middleware('cliente');
 Route::get('/misSiniestros', 'siniestrosController@mostrarListado');//->middleware('cliente');
 Route::get('/registrarSiniestro/{id}', 'siniestrosController@registrarSiniestro');//->middleware('cliente');
-Route::get('/', 'Auth\AuthController@getLogin');
-Route::post('/', 'loginController@authenticate');
+//Route::get('/', 'Auth\AuthController@getLogin');
+Route::get('/', 'loginController@loguear');
+
+
 Route::get('/login', 'Auth\AuthController@getLogin');
 Route::post('/login', 'loginController@authenticate');
 

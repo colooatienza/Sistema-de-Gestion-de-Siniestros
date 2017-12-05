@@ -28,7 +28,7 @@ class Siniestro extends Authenticatable
         $siniestro = new Siniestro(); 
         $siniestro->descripcion = $request->input('descripcion');
         $siniestro->fecha = $request->input('fecha');
-        $siniestro->estado = "En tramite";
+        $siniestro->estado = "Pendiente";
         $siniestro->poliza = $request->input('id');
         $siniestro->save();
     

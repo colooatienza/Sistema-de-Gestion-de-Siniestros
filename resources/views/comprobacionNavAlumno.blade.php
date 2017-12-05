@@ -1,5 +1,5 @@
 @if (Auth::check())
-	@include ('navAlumno')
+@include('nav')
 @else	
 	@include ('nav')
 @endif	

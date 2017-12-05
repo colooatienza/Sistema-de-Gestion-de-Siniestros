@@ -15,7 +15,7 @@
 
 <body>
 @include('header')
-@include('navGeneral')
+@include('nav')
 <div class="container">
 <hr>
 <h2 class="text-center">Siniestros</h2>
